@@ -1,0 +1,57 @@
+
+.titre {
+    font-size: 450%;
+    text-decoration: underline;
+    text-align: center;
+    color: rgb(51, 124, 110);
+}
+.sous-titre {
+    font-size: 200%;
+    text-align: center;
+    color:rgb(51, 124, 110);
+}
+body {
+    height: 140vh;
+    background: linear-gradient(
+        to bottom,
+        rgb(51, 124, 110) 0%,
+        rgb(51, 124, 110) 30%,
+        rgb(198, 190, 190) 30%,
+        rgb(198, 190, 190) 80%,
+        rgb(51, 124, 110) 80%,
+        rgb(51, 124, 110)100%
+    );
+}
+.imagehaut{
+    display: block; margin-right: auto; margin-left: auto;
+}
+
+
+
+li{
+    display: block; margin-right: auto; margin-left: auto;
+    text-align: center;
+    color: white;
+    font-size: 180%;
+}
+div{
+    display:flex;
+    display: block; margin-right: auto; margin-left: auto;
+}
+.PageSuivante{
+    display: block; margin-left: auto;
+    color:rgb(51, 124, 110);
+}
+p {
+    color: rgb(51, 124, 110);
+    text-align: center;
+}
+.github{
+    height: 120px;
+    position: absolute;
+    top: 120%;
+    left:45%
+}
+div{
+    display:flex;
+}
