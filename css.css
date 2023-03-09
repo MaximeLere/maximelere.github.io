@@ -4,7 +4,7 @@
     text-decoration: underline;
     text-align: center;
     color: rgb(51, 124, 110);
-    margin-top: 5%;
+    margin-top: 7%;
 }
 .sous-titre {
     font-size: 200%;
@@ -34,6 +34,7 @@ li{
     text-align: center;
     color: white;
     font-size: 180%;
+    margin-right: 3%;
 }
 div{
     display:flex;
@@ -52,7 +53,4 @@ p {
     position: absolute;
     top: 120%;
     left:45%
-}
-div{
-    display:flex;
 }

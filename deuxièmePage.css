@@ -1,0 +1,10 @@
+body {
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgb(51, 124, 110) 0%,
+        rgb(51, 124, 110) 40%,
+        rgb(198, 190, 190) 40%,
+        rgb(198, 190, 190) 100%
+    );
+}
