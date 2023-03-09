@@ -1,10 +1,30 @@
 body {
-    height: 100vh;
+    height: 500vh;
     background: linear-gradient(
         to bottom,
         rgb(51, 124, 110) 0%,
-        rgb(51, 124, 110) 40%,
-        rgb(198, 190, 190) 40%,
-        rgb(198, 190, 190) 100%
+        rgb(51, 124, 110) 8%,
+        rgb(198, 190, 190) 8%,
+        rgb(198, 190, 190) 26%,
+        rgb(99, 197, 232) 26%,
+        rgb(99, 197, 232) 45%
     );
+}
+img{
+    display: block; margin-right: auto; margin-left: auto;
+}
+.lundi{
+    height: 130px
+}
+.mardi{
+    height: 100px
+}
+.mercredi{
+    height: 100px
+}
+.jeudi{
+    height: 100px
+}
+.vendredi{
+    height: 100px
 }
