@@ -1,30 +1,64 @@
 body {
-    height: 500vh;
+    height: 800vh;
     background: linear-gradient(
         to bottom,
         rgb(51, 124, 110) 0%,
-        rgb(51, 124, 110) 8%,
-        rgb(198, 190, 190) 8%,
-        rgb(198, 190, 190) 26%,
-        rgb(99, 197, 232) 26%,
-        rgb(99, 197, 232) 45%
+        rgb(51, 124, 110) 5%,
+        rgb(198, 190, 190) 5%,
+        rgb(198, 190, 190) 15%,
+        rgb(178, 229, 248) 15%,
+        rgb(178, 229, 248) 29%,
+        rgb(239, 177, 245) 29%
     );
 }
 img{
-    display: block; margin-right: auto; margin-left: auto;
+    display: block; 
+    margin-right: auto; 
+    margin-left: auto; 
+}
+.PageSuivante{
+    position:absolute;
+    left: 90%;
+    top:35%;
+    color:rgb(51, 124, 110);
+}
+.PagePrécédente{
+    position:absolute;
+    top:35%;
+    color:rgb(51, 124, 110);
 }
 .lundi{
-    height: 130px
+    height: 120px;
 }
 .mardi{
-    height: 100px
+    height: 80px;
 }
 .mercredi{
-    height: 100px
+    height: 80px;
 }
 .jeudi{
-    height: 100px
+    height: 90px;
 }
 .vendredi{
-    height: 100px
+    height: 90px;
+}
+.github{
+    height: 120px;
+    position: absolute;
+    top: 500%;
+    left:45%;
+}
+.Jlundi{
+    margin-top: 5%;
+}
+.bulle{
+    margin-top: -10%;
+    height:600px;
+    width: 900px
+}
+.texteLundi{
+    font-size: 170%;
+    position: absolute;
+    top : 156%;
+    left : 24%;
 }
