@@ -8,7 +8,9 @@ body {
         rgb(198, 190, 190) 15%,
         rgb(178, 229, 248) 15%,
         rgb(178, 229, 248) 29%,
-        rgb(239, 177, 245) 29%
+        rgb(239, 177, 245) 29%,
+        rgb(239, 177, 245) 44%,
+        rgb(240, 240, 153) 44%
     );
 }
 img{
@@ -28,19 +30,27 @@ img{
     color:rgb(51, 124, 110);
 }
 .lundi{
-    height: 120px;
+    height: 65px;
 }
 .mardi{
-    height: 80px;
+    margin-top: -1%;
+    margin-left: -2%;
+    height: 65px;
 }
 .mercredi{
-    height: 80px;
+    margin-top: -1%;
+    margin-left: -2%;
+    height: 65px;
 }
 .jeudi{
-    height: 90px;
+    margin-top: -1%;
+    margin-left: -2%;
+    height: 65px;
 }
 .vendredi{
-    height: 90px;
+    margin-top: -1%;
+    margin-left: -2%;
+    height: 65px;
 }
 .github{
     height: 120px;
@@ -56,9 +66,62 @@ img{
     height:600px;
     width: 900px
 }
+.bulle2{
+    height:630px;
+    width:1100px;
+}
 .texteLundi{
     font-size: 170%;
     position: absolute;
-    top : 156%;
+    top : 153%;
     left : 24%;
+}
+.texteMardi{
+    font-size: 150%;
+    position: absolute;
+    top: 270%;
+    left: 14%;
+}
+.bLundi{
+    margin-left: 35%;
+    margin-top:2%;
+    background: transparent;
+    border: 0.125rem solid transparent;
+    border-radius: 0.5rem;
+    height:63px;
+    width:380px;
+}
+.bMardi{
+    margin-left: 35%;
+    margin-top: 2%;
+    background: transparent;
+    border: 0.125rem solid transparent;
+    border-radius: 0.5rem;
+    height:63px;
+    width:380px;
+}
+.bMercredi{
+    margin-left: 35%;
+    margin-top: 2%;
+    background: transparent;
+    border: 0.125rem solid transparent;
+    border-radius: 0.5rem;
+    height:63px;
+    width:380px;
+}.bJeudi{
+    margin-left: 35%;
+    margin-top: 2%;
+    background: transparent;
+    border: 0.125rem solid transparent;
+    border-radius: 0.5rem;
+    height:63px;
+    width:380px;
+}.bVendredi{
+    margin-left: 35%;
+    margin-top: 2%;
+    background: transparent;
+    border: 0.125rem solid transparent;
+    border-radius: 0.5rem;
+    height:63px;
+    width:380px;
 }
