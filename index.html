@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ceci n'est pas un scam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #ffc0cb, #e6b8f0, #b8d4f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(180deg, #87ceeb, #e0f6ff);
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.7;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 60px;
+            height: 30px;
+            top: 30px;
+            left: 80px;
+        }
+
+        .cloud1::before {
+            width: 40px;
+            height: 40px;
+            top: -15px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 35px;
+            height: 35px;
+            top: -10px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 80px;
+            height: 35px;
+            top: 50px;
+            right: 150px;
+        }
+
+        .cloud2::before {
+            width: 50px;
+            height: 50px;
+            top: -20px;
+            left: 15px;
+        }
+
+        .cloud2::after {
+            width: 45px;
+            height: 45px;
+            top: -15px;
+            right: 15px;
+        }
+
+        .cloud3 {
+            width: 50px;
+            height: 25px;
+            top: 20px;
+            right: 350px;
+        }
+
+        .cloud3::before {
+            width: 35px;
+            height: 35px;
+            top: -12px;
+            left: 8px;
+        }
+
+        #player {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            z-index: 10;
+        }
+
+        .player-head {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(180deg, #ffb6c1, #ff99aa);
+            border-radius: 50%;
+            border: 2px solid #ff69b4;
+            top: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .player-hair {
+            position: absolute;
+            width: 38px;
+            height: 28px;
+            background: linear-gradient(180deg, #8b4513 0%, #d2691e 50%, #ff4444 100%);
+            border-radius: 50% 50% 0 0;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: visible;
+        }
+
+        .player-hair::before {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 35px;
+            background: linear-gradient(180deg, #8b4513 0%, #d2691e 40%, #ff4444 100%);
+            border-radius: 50%;
+            left: -7px;
+            top: 8px;
+        }
+
+        .player-hair::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 35px;
+            background: linear-gradient(180deg, #8b4513 0%, #d2691e 40%, #ff4444 100%);
+            border-radius: 50%;
+            right: -7px;
+            top: 8px;
+        }
+
+        .player-eye {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: black;
+            border-radius: 50%;
+            top: 10px;
+        }
+
+        .player-eye::after {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 2px;
+            background: black;
+            top: -3px;
+            left: -1px;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .player-eye.left {
+            left: 6px;
+        }
+
+        .player-eye.right {
+            right: 6px;
+        }
+
+        .player-smile {
+            position: absolute;
+            width: 14px;
+            height: 8px;
+            border-bottom: 2.5px solid #ff1493;
+            border-radius: 0 0 60% 60%;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .player-body {
+            position: absolute;
+            width: 24px;
+            height: 30px;
+            background: linear-gradient(180deg, #9370db, #b19cd9);
+            border-radius: 45% 45% 60% 60%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-body::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.1));
+            border-radius: 0 0 60% 60%;
+        }
+
+        .player-arm {
+            position: absolute;
+            width: 6px;
+            height: 18px;
+            background: #ffb6c1;
+            border-radius: 20px;
+            top: 16px;
+        }
+
+        .player-arm.left {
+            left: 2px;
+        }
+
+        .player-arm.right {
+            right: 2px;
+        }
+
+        .player-leg {
+            position: absolute;
+            width: 5px;
+            height: 16px;
+            background: #ffccaa;
+            border-radius: 12px;
+            bottom: 0;
+        }
+
+        .player-leg::after {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 4px;
+            background: #8b6f47;
+            bottom: 0;
+            left: -1px;
+            border-radius: 2px;
+        }
+
+        .player-leg.left {
+            left: 6px;
+        }
+
+        .player-leg.right {
+            right: 6px;
+        }
+
+        .platform {
+            position: absolute;
+            background: linear-gradient(180deg, #ff69b4, #ff1493);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid #c71585;
+        }
+
+        #ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(180deg, #90ee90, #228b22);
+            border-top: 4px solid #006400;
+        }
+
+        #instructions {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 24px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff1493;
+            z-index: 100;
+        }
+
+        #question {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 4px solid #ff69b4;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff1493;
+            text-align: center;
+            display: none;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        #introMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 50px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 4px solid #ff69b4;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff1493;
+            text-align: center;
+            z-index: 200;
+            animation: fadeOut 4s forwards;
+        }
+
+        @keyframes fadeOut {
+            0%, 70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .button {
+            position: absolute;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid;
+        }
+
+        #noButton {
+            background: linear-gradient(180deg, #999, #666);
+            border-color: #444;
+        }
+
+        #yesButton {
+            background: linear-gradient(180deg, #ff69b4, #ff1493);
+            border-color: #c71585;
+        }
+
+        .end-decoration {
+            position: absolute;
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        #victoryScreen {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #ffb6c1, #dda0dd, #ffb6c1);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        #victoryMessage {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 50px 60px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 4px solid #ff69b4;
+            text-align: center;
+            z-index: 201;
+        }
+
+        #victoryMessage h1 {
+            font-size: 60px;
+            color: #ff1493;
+            margin-bottom: 10px;
+        }
+
+        #victoryMessage h2 {
+            font-size: 45px;
+            color: #9370db;
+            margin-bottom: 10px;
+        }
+
+        #victoryMessage p {
+            font-size: 28px;
+            color: #ff69b4;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff1493;
+            font-size: 30px;
+            animation: fall linear infinite;
+            z-index: 150;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(600px);
+            }
+        }
+
+        .sparkle {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .heart-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .heart-emoji {
+            font-size: 40px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #hint {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ff1493;
+            display: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+
+        <div id="introMessage">Lola, j'ai fait un petit truc pour toi... 💕<br>J'espère que ça te plaira ! 🥰</div>
+        <div id="question">Ça te dirait de sortir le 14 février avec moi ? 💕</div>
+
+        <div id="player">
+            <div class="player-hair"></div>
+            <div class="player-head">
+                <div class="player-eye left"></div>
+                <div class="player-eye right"></div>
+                <div class="player-smile"></div>
+            </div>
+            <div class="player-arm left"></div>
+            <div class="player-arm right"></div>
+            <div class="player-body">
+                <div class="player-leg left"></div>
+                <div class="player-leg right"></div>
+            </div>
+        </div>
+
+        <!-- Décorations pour la zone finale -->
+        <div class="end-decoration" style="left: 2020px; top: 30%; animation-delay: 0s;">💕</div>
+        <div class="end-decoration" style="left: 2150px; top: 20%; animation-delay: 0.5s;">❤️</div>
+        <div class="end-decoration" style="left: 2280px; top: 30%; animation-delay: 1s;">💕</div>
+        <div class="end-decoration" style="left: 2350px; top: 20%; animation-delay: 1.5s;">❤️</div>
+
+        <div id="ground"></div>
+
+        <div id="victoryScreen">
+            <div id="victoryMessage">
+                <div class="sparkle">✨</div>
+                <h1>YAAAAAY</h1>
+                <h2>JE LE SAVAIS !!</h2>
+                <p>Je suis trop content ! 💕✨</p>
+                <div class="heart-row">
+                    <span class="heart-emoji">❤️</span>
+                    <span class="heart-emoji" style="animation-delay: 0.1s;">💕</span>
+                    <span class="heart-emoji" style="animation-delay: 0.2s;">❤️</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const player = document.getElementById('player');
+        const gameContainer = document.getElementById('gameContainer');
+        const question = document.getElementById('question');
+        const victoryScreen = document.getElementById('victoryScreen');
+        const introMessage = document.getElementById('introMessage');
+        
+        // Supprimer le message d'intro après 4 secondes
+        setTimeout(() => {
+            introMessage.style.display = 'none';
+        }, 4000);
+
+        let gameState = 'playing'; // 'playing', 'question', 'victory'
+        let playerX = 50;
+        let playerY = window.innerHeight - 200;
+        let velocityY = 0;
+        let velocityX = 0;
+        let isJumping = false;
+        let noButtonSize = 1;
+        let yesButtonSize = 1;
+        let lastPlatformIndex = 0; // Pour le respawn
+        let checkpointX = 50;
+        let checkpointY = window.innerHeight - 200;
+        
+        // Phrases pour le bouton Non
+        const noButtonPhrases = [
+            "Non",
+            "Mais pourquoi ??",
+            "Stp dit ouiii",
+            "Allez s'il te plaît !",
+            "Juste un petit oui ?",
+            "Tu es sûre ?",
+            "Réfléchis bien...",
+            "Un petit effort !",
+            "Pourquoi pas ?",
+            "Change d'avis !"
+        ];
+        let currentPhraseIndex = 0;
+
+        const GRAVITY = 0.5;
+        const JUMP_FORCE = -11;
+        const MOVE_SPEED = 4;
+        const GROUND_Y = window.innerHeight - 80; // Position du sol relative à la hauteur de la fenêtre
+        
+        let cameraX = 0;
+        const CAMERA_SCROLL_THRESHOLD = 300; // Plus proche pour mieux suivre le joueur
+
+        const keys = {};
+
+        // Calculer les positions des plateformes en fonction de la hauteur de la fenêtre
+        const groundLevel = window.innerHeight - 80;
+        const platforms = [
+            { x: 0, y: groundLevel - 10, width: 150, height: 25 },
+            { x: 180, y: groundLevel - 110, width: 110, height: 20 },
+            { x: 330, y: groundLevel - 160, width: 110, height: 20 },
+            { x: 480, y: groundLevel - 210, width: 110, height: 20 },
+            { x: 630, y: groundLevel - 160, width: 110, height: 20 },
+            { x: 780, y: groundLevel - 80, width: 110, height: 20 },
+            { x: 930, y: groundLevel - 130, width: 110, height: 20 },
+            { x: 1080, y: groundLevel - 180, width: 110, height: 20 },
+            { x: 1230, y: groundLevel - 130, width: 110, height: 20 },
+            { x: 1380, y: groundLevel - 80, width: 110, height: 20 },
+            { x: 1530, y: groundLevel - 130, width: 110, height: 20 },
+            { x: 1680, y: groundLevel - 180, width: 110, height: 20 },
+            { x: 1830, y: groundLevel - 130, width: 140, height: 20 },
+            // Zone finale avec une grande plateforme
+            { x: 2000, y: groundLevel - 70, width: 400, height: 25 }
+        ];
+
+        // Créer les plateformes
+        platforms.forEach((platform, i) => {
+            const platformDiv = document.createElement('div');
+            platformDiv.className = 'platform';
+            platformDiv.dataset.index = i;
+            platformDiv.style.left = platform.x + 'px';
+            platformDiv.style.top = platform.y + 'px';
+            platformDiv.style.width = platform.width + 'px';
+            platformDiv.style.height = platform.height + 'px';
+            gameContainer.appendChild(platformDiv);
+        });
+
+        // Créer les boutons
+        const noButton = document.createElement('div');
+        noButton.id = 'noButton';
+        noButton.className = 'button';
+        noButton.textContent = 'Non';
+        noButton.style.display = 'none';
+        noButton.style.cursor = 'pointer';
+        gameContainer.appendChild(noButton);
+
+        const yesButton = document.createElement('div');
+        yesButton.id = 'yesButton';
+        yesButton.className = 'button';
+        yesButton.innerHTML = 'Oui ❤️';
+        yesButton.style.display = 'none';
+        yesButton.style.cursor = 'pointer';
+        gameContainer.appendChild(yesButton);
+        
+        // Event listeners pour les clics
+        noButton.addEventListener('click', () => {
+            if (gameState === 'question' && noButtonSize > 0.1) {
+                currentPhraseIndex = (currentPhraseIndex + 1) % noButtonPhrases.length;
+                noButton.textContent = noButtonPhrases[currentPhraseIndex];
+                noButtonSize = Math.max(0, noButtonSize - 0.15);
+                yesButtonSize = Math.min(5, yesButtonSize + 0.4);
+                updateButtons();
+            }
+        });
+        
+        yesButton.addEventListener('click', () => {
+            if (gameState === 'question') {
+                gameState = 'victory';
+                // Cacher tout sauf l'écran de victoire
+                question.style.display = 'none';
+                noButton.style.display = 'none';
+                yesButton.style.display = 'none';
+                victoryScreen.style.display = 'flex';
+                createHearts();
+            }
+        });
+
+        // Gestion des touches
+        document.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+            if ((e.key === ' ' || e.key === 'ArrowUp') && !isJumping && gameState !== 'victory') {
+                velocityY = JUMP_FORCE;
+                isJumping = true;
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+
+        function checkCollision(x, y, platform) {
+            const playerLeft = x;
+            const playerRight = x + 40;
+            const playerTop = y;
+            const playerBottom = y + 50;
+            
+            const platformLeft = platform.x;
+            const platformRight = platform.x + platform.width;
+            const platformTop = platform.y;
+            const platformBottom = platform.y + platform.height;
+            
+            // Vérifier que le joueur tombe sur la plateforme (pas en montant)
+            const wasAbovePlatform = playerY + 50 <= platformTop;
+            const isNowAtOrBelowPlatform = playerBottom >= platformTop;
+            
+            return (
+                playerRight > platformLeft &&
+                playerLeft < platformRight &&
+                wasAbovePlatform &&
+                isNowAtOrBelowPlatform &&
+                playerBottom < platformBottom + 10 && // Petite marge
+                velocityY >= 0
+            );
+        }
+
+        function updateGame() {
+            if (gameState === 'victory') return;
+
+            // Mouvement horizontal
+            let moveX = 0;
+            if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
+                moveX = -MOVE_SPEED;
+            } else if (keys['ArrowRight'] || keys['d'] || keys['D']) {
+                moveX = MOVE_SPEED;
+            }
+
+            playerX += moveX;
+            
+            // Limites horizontales
+            playerX = Math.max(0, playerX);
+            
+            // Défilement de la caméra - suit TOUJOURS le joueur
+            if (playerX > CAMERA_SCROLL_THRESHOLD) {
+                cameraX = playerX - CAMERA_SCROLL_THRESHOLD;
+            } else {
+                cameraX = 0;
+            }
+            
+            // Mettre à jour la position de TOUS les éléments avec la caméra
+            const allPlatforms = document.querySelectorAll('.platform');
+            allPlatforms.forEach((platformDiv) => {
+                platformDiv.style.transform = `translateX(-${cameraX}px)`;
+            });
+            
+            document.getElementById('ground').style.transform = `translateX(-${cameraX}px)`;
+            
+            // Déplacer aussi les nuages pour l'effet parallax
+            const clouds = document.querySelectorAll('.cloud');
+            clouds.forEach(cloud => {
+                cloud.style.transform = `translateX(-${cameraX * 0.3}px)`;
+            });
+            
+            // Déplacer les décorations de fin
+            const decorations = document.querySelectorAll('.end-decoration');
+            decorations.forEach(deco => {
+                deco.style.transform = `translateX(-${cameraX}px)`;
+            });
+            
+            // Déplacer les boutons aussi
+            noButton.style.transform = `translateX(-${cameraX}px)`;
+            yesButton.style.transform = `translateX(-${cameraX}px)`;
+
+            // Gravité
+            velocityY += GRAVITY;
+            let newPlayerY = playerY + velocityY;
+
+            // Collision avec les plateformes
+            let onPlatform = false;
+            for (let i = 0; i < platforms.length; i++) {
+                const platform = platforms[i];
+                
+                // Vérifier collision
+                const playerLeft = playerX;
+                const playerRight = playerX + 40;
+                const playerBottom = newPlayerY + 50;
+                const playerBottomPrev = playerY + 50;
+                
+                const platformLeft = platform.x;
+                const platformRight = platform.x + platform.width;
+                const platformTop = platform.y;
+                
+                // Le joueur doit être au-dessus de la plateforme et tomber dessus
+                if (playerRight > platformLeft + 5 &&
+                    playerLeft < platformRight - 5 &&
+                    playerBottomPrev <= platformTop + 5 &&
+                    playerBottom >= platformTop &&
+                    velocityY >= 0) {
+                    
+                    newPlayerY = platformTop - 50;
+                    playerY = newPlayerY;
+                    velocityY = 0;
+                    isJumping = false;
+                    onPlatform = true;
+                    
+                    // Mettre à jour le checkpoint
+                    lastPlatformIndex = i;
+                    checkpointX = platform.x + platform.width / 2 - 20;
+                    checkpointY = platform.y - 50;
+                    break;
+                }
+            }
+            
+            playerY = newPlayerY;
+
+            // Collision avec le sol - vérifier si on est au-delà de la terre verte
+            if (playerY >= GROUND_Y) {
+                // La première plateforme commence à x=0 et fait 150px
+                // Donc la terre verte s'arrête environ à x=150
+                // Si le joueur est au-delà et touche le sol = vide
+                
+                if (playerX > 150 && lastPlatformIndex >= 0 && checkpointY < GROUND_Y) {
+                    // RESPAWN immédiat au dernier checkpoint car on est après la terre verte
+                    playerX = checkpointX;
+                    playerY = checkpointY;
+                    velocityY = 0;
+                    isJumping = false;
+                } else {
+                    // On est encore sur la terre verte du début
+                    playerY = GROUND_Y;
+                    velocityY = 0;
+                    isJumping = false;
+                }
+            }
+
+            // Transition vers la question
+            if (gameState === 'playing' && playerX > 1950) {
+                gameState = 'question';
+                question.style.display = 'block';
+                noButton.style.display = 'flex';
+                yesButton.style.display = 'flex';
+                updateButtons();
+            }
+
+            // Gestion des boutons
+            if (gameState === 'question') {
+                updateButtons();
+            }
+
+            // Mise à jour de la position du joueur (toujours à la même position à l'écran)
+            player.style.left = (playerX - cameraX) + 'px';
+            player.style.top = playerY + 'px';
+
+            requestAnimationFrame(updateGame);
+        }
+
+        function updateButtons() {
+            const buttonY = window.innerHeight - 200;
+            
+            noButton.style.left = 2080 + 'px';
+            noButton.style.top = buttonY + 'px';
+            noButton.style.width = (80 * noButtonSize) + 'px';
+            noButton.style.height = (60 * noButtonSize) + 'px';
+            noButton.style.fontSize = (18 * noButtonSize) + 'px';
+
+            yesButton.style.left = 2180 + 'px';
+            yesButton.style.top = (buttonY - (60 * yesButtonSize - 60)) + 'px';
+            yesButton.style.width = (80 * yesButtonSize) + 'px';
+            yesButton.style.height = (60 * yesButtonSize) + 'px';
+            yesButton.style.fontSize = (20 * yesButtonSize) + 'px';
+
+            if (noButtonSize <= 0.1) {
+                noButton.style.display = 'none';
+            }
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = '❤️';
+                    heart.style.left = Math.random() * 1000 + 'px';
+                    heart.style.top = -50 + 'px';
+                    heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+                    heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+                    victoryScreen.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        // Démarrer le jeu
+        updateGame();
+    </script>
+</body>
+</html>
